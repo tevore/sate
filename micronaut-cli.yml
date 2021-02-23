@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.sate
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [app-name, elasticsearch, gradle, h2, http-client, java, java-application, junit, logback, lombok, mockito, netty-server, properties, readme, shade]
