@@ -12,7 +12,7 @@ import io.micronaut.http.annotation.Produces;
 
 import javax.inject.Inject;
 
-@Controller
+@Controller("/sate")
 public class SateController {
 
     private final RestaurantManageService restaurantManageService;
@@ -22,17 +22,16 @@ public class SateController {
         this.restaurantManageService = restaurantManageService;
     }
 
-    @Post(uri = "/restaurant")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Post
     @Consumes(MediaType.APPLICATION_JSON)
     public ApiResponse createRestaurant(CreateRestaurantRequest restaurantRequest) {
         return restaurantManageService.createRestaurant(restaurantRequest);
     }
 
-    @Post(uri = "/dish")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public ApiResponse addDish(AddDishRequest addDishRequest) {
-        return null;
-    }
+//    @Post
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public ApiResponse addDish(AddDishRequest addDishRequest) {
+//        return null;
+//    }
 }
