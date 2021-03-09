@@ -25,6 +25,7 @@ micronaut {
 }
 
 dependencies {
+    implementation 'junit:junit:4.12'
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("io.micronaut:micronaut-validation")
     annotationProcessor "io.micronaut:micronaut-inject-java:1.0.0" // <2>
