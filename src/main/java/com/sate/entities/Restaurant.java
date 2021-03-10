@@ -1,6 +1,7 @@
 package com.sate.entities;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "restaurants")
 @Getter
+@ToString
 public class Restaurant {
 
     @Id

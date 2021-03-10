@@ -5,6 +5,8 @@ import com.sate.entities.repositories.RestaurantRepository;
 import com.sate.web.controllers.requests.CreateRestaurantRequest;
 import com.sate.web.controllers.responses.ApiResponse;
 import io.micronaut.context.annotation.Prototype;
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +26,7 @@ public class RestaurantManageService {
 
     public ApiResponse createRestaurant(CreateRestaurantRequest restaurantRequest) {
         try {
-            restaurantRepository.save(new Restaurant(
+            Restaurant restaurant = restaurantRepository.save(new Restaurant(
                     restaurantRequest.getName(),
                     restaurantRequest.getCuisine(),
                     restaurantRequest.getAddress().getAddress1(),
@@ -32,6 +34,8 @@ public class RestaurantManageService {
                     restaurantRequest.getAddress().getCity(),
                     restaurantRequest.getAddress().getStateCode(),
                     restaurantRequest.getAddress().getPostalCode()));
+
+            LOGGER.info("{} successfully added as restaurant entry {}", restaurant.getName(), restaurant.getId());
         } catch(Exception e) {
             LOGGER.error("Blew up: " + e.getMessage());
             e.printStackTrace();
@@ -40,4 +44,10 @@ public class RestaurantManageService {
     }
 
 
+    public ApiResponse retrieveRestaurant(String name) {
+        Page<Restaurant> pages = restaurantRepository.findByNameLike("%"+name+"%", Pageable.from(0, 5));
+        LOGGER.info("Total pages found via query: {}", pages.getTotalPages());
+        Restaurant r = pages.getContent().get(0);
+        return new ApiResponse(r.toString(), 200);
+    }
 }

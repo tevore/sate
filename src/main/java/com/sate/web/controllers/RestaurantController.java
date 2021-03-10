@@ -4,12 +4,11 @@ import com.sate.web.controllers.requests.CreateRestaurantRequest;
 import com.sate.web.controllers.responses.ApiResponse;
 import com.sate.services.RestaurantManageService;
 import io.micronaut.http.MediaType;
-import io.micronaut.http.annotation.Consumes;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.*;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -23,6 +22,8 @@ import javax.validation.constraints.NotNull;
 @ExecuteOn(TaskExecutors.IO)
 @Controller("/restaurant")
 public class RestaurantController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestaurantController.class);
 
     private final RestaurantManageService restaurantManageService;
 
@@ -38,9 +39,11 @@ public class RestaurantController {
     }
 
 
-    //retrieve via id or name search or distance from?
-//    @Get
-//    public ApiResponse retrieveRestaurant() {
-//
-//    }
+    //TODO add distance search for provided GPS data or retrieve top from my ToGoTo list
+    //retrieve via name search
+    @Get
+    public ApiResponse retrieveRestaurant(@QueryValue String name) {
+        LOGGER.info("Seeking restaurant like {}", name);
+        return restaurantManageService.retrieveRestaurant(name);
+    }
 }
