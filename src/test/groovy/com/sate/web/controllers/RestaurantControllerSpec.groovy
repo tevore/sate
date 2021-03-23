@@ -31,7 +31,6 @@ class RestaurantControllerSpec extends Specification {
         createRestaurantRequest.setAddress(new Address("123 St", "123", "134", "123", "123"))
         def httpApiResponse = client.toBlocking().exchange(HttpRequest.POST("/restaurant", createRestaurantRequest), ApiResponse)
         then:
-       // def apiResponse = new ApiResponse("Restaurant added", 200)
         restaurantManageService.createRestaurant(_) >> new ApiResponse("Restaurant added", 200)
         200 == httpApiResponse.body().statusCode
         "Restaurant added" == httpApiResponse.body().message
