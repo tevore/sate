@@ -1,16 +1,14 @@
 package com.sate.services;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+//@MicronautTest
 class RestaurantManageServiceTest {
 
-    @Test
+//    @Test
     void createRestaurant() {
     }
 
-    @Test
+//    @Test
     void retrieveRestaurant() {
     }
 }

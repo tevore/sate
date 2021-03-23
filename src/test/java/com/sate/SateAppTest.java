@@ -1,21 +1,21 @@
 package com.sate;
 
 import io.micronaut.runtime.EmbeddedApplication;
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
+//import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Assertions;
 
 import javax.inject.Inject;
 
-@MicronautTest
+//@MicronautTest
 class SateAppTest {
 
     @Inject
     EmbeddedApplication<?> application;
 
-    @Test
-    void testItWorks() {
-        Assertions.assertTrue(application.isRunning());
-    }
+//    @Test
+//    void testItWorks() {
+//        Assertions.assertTrue(application.isRunning());
+//    }
 
 }

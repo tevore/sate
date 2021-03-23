@@ -35,6 +35,7 @@ public class RestaurantController {
     @Post
     @Consumes(MediaType.APPLICATION_JSON)
     public ApiResponse createRestaurant(@NotNull @Valid CreateRestaurantRequest restaurantRequest) {
+        LOGGER.info("Attempting to create new restaurant...");
         return restaurantManageService.createRestaurant(restaurantRequest);
     }
 

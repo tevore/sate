@@ -25,6 +25,7 @@ public class RestaurantManageService {
     }
 
     public ApiResponse createRestaurant(CreateRestaurantRequest restaurantRequest) {
+        LOGGER.info("Creating restaurant in service...");
         try {
             Restaurant restaurant = restaurantRepository.save(new Restaurant(
                     restaurantRequest.getName(),
