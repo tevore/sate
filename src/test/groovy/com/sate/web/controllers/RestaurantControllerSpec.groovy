@@ -1,9 +1,9 @@
 package com.sate.web.controllers
 
 import com.sate.services.RestaurantManageService
-import com.sate.web.controllers.requests.Address
-import com.sate.web.controllers.requests.CreateRestaurantRequest
-import com.sate.web.controllers.responses.ApiResponse
+import com.sate.web.requests.Address
+import com.sate.web.requests.CreateRestaurantRequest
+import com.sate.web.responses.ApiResponse
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client

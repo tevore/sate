@@ -1,7 +1,7 @@
 package com.sate.web.controllers;
 
-import com.sate.web.controllers.requests.CreateRestaurantRequest;
-import com.sate.web.controllers.responses.ApiResponse;
+import com.sate.web.requests.CreateRestaurantRequest;
+import com.sate.web.responses.ApiResponse;
 import com.sate.services.RestaurantManageService;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
@@ -43,8 +43,10 @@ public class RestaurantController {
     //TODO add distance search for provided GPS data or retrieve top from my ToGoTo list
     //retrieve via name search
     @Get
-    public ApiResponse retrieveRestaurant(@QueryValue String name) {
+    public ApiResponse retrieveRestaurant(@QueryValue String name,
+                                          @QueryValue(defaultValue = "0") Integer page,
+                                          @QueryValue(defaultValue = "5") Integer size) {
         LOGGER.info("Seeking restaurant like {}", name);
-        return restaurantManageService.retrieveRestaurant(name);
+        return restaurantManageService.retrieveRestaurant(name, page, size);
     }
 }

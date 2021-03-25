@@ -2,8 +2,9 @@ package com.sate.services;
 
 import com.sate.entities.Restaurant;
 import com.sate.entities.repositories.RestaurantRepository;
-import com.sate.web.controllers.requests.CreateRestaurantRequest;
-import com.sate.web.controllers.responses.ApiResponse;
+import com.sate.web.requests.CreateRestaurantRequest;
+import com.sate.web.responses.ApiResponse;
+import com.sate.web.responses.RetrievalResponse;
 import io.micronaut.context.annotation.Prototype;
 import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
@@ -41,14 +42,17 @@ public class RestaurantManageService {
             LOGGER.error("Blew up: " + e.getMessage());
             e.printStackTrace();
         }
-        return new ApiResponse("Restaurant added", 200);
+        return new ApiResponse("Restaurant added", 200, null);
     }
 
 
-    public ApiResponse retrieveRestaurant(String name) {
-        Page<Restaurant> pages = restaurantRepository.findByNameLike("%"+name+"%", Pageable.from(0, 5));
+    public ApiResponse retrieveRestaurant(String name, Integer page, Integer size) {
+        //TODO add test for cases and likes
+        //TODO alter query to lower case values during retrieval
+        Page<Restaurant> pages = restaurantRepository.findByNameLike("%"+name+"%", Pageable.from(page, size));
         LOGGER.info("Total pages found via query: {}", pages.getTotalPages());
-        Restaurant r = pages.getContent().get(0);
-        return new ApiResponse(r.toString(), 200);
+        RetrievalResponse retrievalResponse = new RetrievalResponse();
+        pages.getContent().stream().forEach(r -> retrievalResponse.getRestaurants().add(r));
+        return new ApiResponse("Results found", 200, retrievalResponse);
     }
 }

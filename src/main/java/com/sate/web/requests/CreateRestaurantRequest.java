@@ -1,4 +1,4 @@
-package com.sate.web.controllers.requests;
+package com.sate.web.requests;
 
 import io.micronaut.core.annotation.Introspected;
 import lombok.*;
@@ -6,6 +6,7 @@ import lombok.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +24,5 @@ public class CreateRestaurantRequest {
     private String cuisine;
     @Valid @NotNull
     private Address address;
+    private List<Tag> tags;
 }

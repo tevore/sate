@@ -1,4 +1,4 @@
-package com.sate.web.controllers.responses;
+package com.sate.web.responses;
 
 import lombok.*;
 
@@ -7,8 +7,9 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApiResponse {
+public class ApiResponse<T> {
 
     private String message;
     private int statusCode;
+    private T subResponse;
 }

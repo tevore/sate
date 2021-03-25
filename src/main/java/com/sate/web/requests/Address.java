@@ -1,4 +1,4 @@
-package com.sate.web.controllers.requests;
+package com.sate.web.requests;
 
 import io.micronaut.core.annotation.Introspected;
 import lombok.*;
@@ -22,4 +22,5 @@ public class Address {
     private String stateCode;
     @NotBlank
     private String postalCode;
+    private Coordinates coordinates;
 }
